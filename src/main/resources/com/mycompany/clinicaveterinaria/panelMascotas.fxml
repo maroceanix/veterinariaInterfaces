@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="650.0" prefWidth="800.0" spacing="15.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.clinicaveterinaria.MascotasController">
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+   <children>
+      
+      <HBox alignment="CENTER_RIGHT" prefWidth="760.0">
+         <children>
+            <Label prefHeight="35.0" prefWidth="543.0" text="GESTIÓN DE MASCOTAS" textFill="#69ddce">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnCerrarSesion" mnemonicParsing="false" onAction="#handleCerrarSesion" style="-fx-background-color: #ff6b6b;" text="Cerrar Sesión" textFill="WHITE" />
+         </children>
+      </HBox>
+
+      <TableView fx:id="tablaMascotas" prefHeight="300.0" prefWidth="760.0">
+         <columns>
+            <TableColumn fx:id="colId" prefWidth="60.0" text="ID" />
+            <TableColumn fx:id="colNombre" prefWidth="200.0" text="Nombre" />
+            <TableColumn fx:id="colEspecie" prefWidth="200.0" text="Especie" />
+            <TableColumn fx:id="colEdad" prefWidth="100.0" text="Edad" />
+         </columns>
+      </TableView>
+
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
+         <children>
+            <TextField fx:id="txtBuscar" prefWidth="300.0" promptText="Buscar por nombre..." />
+            <Button fx:id="btnBuscar" onAction="#handleBuscar" style="-fx-background-color: #69ddce;" text="Buscar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+         </children>
+      </HBox>
+
+      <VBox spacing="10.0" style="-fx-border-color: #eeeeee; -fx-border-radius: 5; -fx-padding: 10;">
+         <children>
+            <HBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label text="Nombre Mascota" />
+                        <TextField fx:id="txtNombre" prefWidth="180.0" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label text="Especie" />
+                        <TextField fx:id="txtEspecie" prefWidth="180.0" />
+                     </children>
+                  </VBox>
+                  <VBox spacing="5.0">
+                     <children>
+                        <Label text="Edad" />
+                        <TextField fx:id="txtEdad" prefWidth="80.0" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+
+      <HBox alignment="CENTER" spacing="20.0">
+         <children>
+            <Button fx:id="btnAniadir" onAction="#handleAniadir" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #69ddce;" text="Añadir" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnModificar" onAction="#handleModificar" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #69ddce;" text="Modificar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnEliminar" onAction="#handleEliminar" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #FF6B6B;" text="Eliminar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+   </children>
+</VBox>
