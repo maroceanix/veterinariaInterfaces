@@ -86,7 +86,49 @@ public class MascotasController implements Initializable {
         }
     }
 
-    @FXML public void handleModificar() { /* ... igual que añadir pero con dao.actualizar ... */ }
+    @FXML
+    public void handleModificar() {
+        // 1. Obtener la mascota seleccionada de la tabla
+        Mascota seleccionada = tablaMascotas.getSelectionModel().getSelectedItem();
+
+        if (seleccionada != null) {
+            try {
+                // 2. Validar que los campos no estén vacíos
+                if (txtNombre.getText().isEmpty() || txtEspecie.getText().isEmpty()) {
+                    mostrarError("Validación", "Por favor, rellena todos los campos.");
+                    return;
+                }
+
+                // 3. Actualizar el objeto con los nuevos datos del formulario
+                seleccionada.setNombre(txtNombre.getText());
+                seleccionada.setEspecie(txtEspecie.getText());
+                seleccionada.setEdad(Integer.parseInt(txtEdad.getText()));
+
+                // 4. Llamar al DAO para persistir los cambios en la BD
+                dao.actualizar(seleccionada);
+
+                // 5. Refrescar la UI
+                cargarTabla();
+                limpiarFormulario();
+                
+                // Opcional: Mostrar confirmación
+                Alert info = new Alert(Alert.AlertType.INFORMATION);
+                info.setTitle("Éxito");
+                info.setHeaderText(null);
+                info.setContentText("Mascota actualizada correctamente.");
+                info.showAndWait();
+
+            } catch (NumberFormatException e) {
+                mostrarError("Error de formato", "La edad debe ser un número válido.");
+            } catch (Exception e) {
+                mostrarError("Error BD", "No se pudo actualizar la mascota.");
+                e.printStackTrace();
+            }
+        } else {
+            // Si el usuario da a modificar sin haber pinchado en la tabla
+            mostrarError("Selección necesaria", "Selecciona una mascota de la tabla para modificarla.");
+        }
+    }
 
     @FXML
     private Button btnCerrarSesion;
